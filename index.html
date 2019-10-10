@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>LeetCode Test Code</title>
+    <style>
+        body {background-color: blue}
+        p {font-size: 50px}
+        div {font-size: 30px}
+    </style>
+  </head>
+  <body>
+    <P>Welcome to my test page</p>
+
+    <div id="panel">
+      <button id="btn">Make Request</button>
+    </div>
+
+    <script>
+    'use strict'
+
+    let panel,
+      request;
+
+    function doRequest() {
+      request = new XMLHttpRequest();
+      request.open("GET", "data.txt", true);
+      request.send(null);
+      request.onreadystatechange = showStatus;
+    }
+    function showStatus() {
+      if (request.readystate === 4) {
+        if (request.status === 200) {
+          panel.innerHTML += "<br>Request Succeded";
+        }
+      }
+    }
+
+    function init() {
+      panel = document.getElementById("panel");
+      let btn = document.getElementById("btn");
+      btn.onclick = doRequest;
+    }
+    // Nomination of the JavaScript initialisation function as the event handler to the DOMContentLoaded event must be made in a different way to that for the window.onload event. It requires a statment to "listen" out for the DOMContentLoaded event. This uses the JavaScript document.addEventListener() function to specify a comma-seperated list of three parameters within its parentheses. The parameters state in order the event to listen out for, the name of the event handler function to call when that event is triggered, and an event phase.
+    document.addEventListener('DOMContentLoaded', init, false);
+
+    </script>
+  </body>
+
+</html>
